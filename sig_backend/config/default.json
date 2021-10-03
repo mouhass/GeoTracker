@@ -1,3 +1,5 @@
 {
-    "mongoURI": "mongodb+srv://test_user:loseurself@cluster0.qny9n.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
-  }
+  "mongoURI": "mongodb+srv://mounir:mongodbatlas123@cluster0.pbnov.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+}
+
+
