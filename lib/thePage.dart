@@ -10,13 +10,18 @@ class thePage extends StatefulWidget {
 
 class thePageState extends State<thePage> {
   void getData() async {
-    var url = Uri.parse('http://127.0.0.1:1234/geo/read_allgeo');
+    var url = Uri.parse('http://localhost:1234/geo/test');
+    print("getData()");
     var response = await http.get(url);
     if (response.statusCode == 200) {
       print("hello world---");
     } else {
       print("error ------------------");
     }
+  }
+
+  Future<http.Response> fetchAlbum() {
+    return http.get(Uri.parse('http://localhost:1234/geo/test'));
   }
 
   double lat = 34.5;
@@ -40,7 +45,7 @@ class thePageState extends State<thePage> {
             TextButton(
               child: Text("click me", style: TextStyle(color: Colors.red)),
               onPressed: () {
-                getData();
+                fetchAlbum();
               },
             )
           ],

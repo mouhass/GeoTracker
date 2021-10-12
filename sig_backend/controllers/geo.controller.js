@@ -2,6 +2,7 @@ const Geo = require('../models/geo.model');
 
 //Simple version, without validation or sanitation
 exports.test = function (req, res) {
+    console.log("tesing");
     res.send('hello test controller!');
 };
 

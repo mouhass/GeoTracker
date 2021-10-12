@@ -2,8 +2,13 @@
 const express = require('express');
 const router = express.Router();
 
+
 // Require the controllers
 const geo_controller = require('../controllers/geo.controller');
+
+// test url.
+router.get('/test', geo_controller.test);
+
 
 // routes/geo.route.js...
 router.post('/create', geo_controller.geo_create);
