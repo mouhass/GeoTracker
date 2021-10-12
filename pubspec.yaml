@@ -1,4 +1,4 @@
-name: geolocator
+name: geotracker
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -30,7 +30,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_map: any
   latlong2:
-  http: 
+  http:
+  geolocator: ^7.6.2
+  get: 
 
     
 flutter_native_splash:

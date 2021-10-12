@@ -1,5 +1,17 @@
 // server.js
 const express = require('express');
+
+// initialize the express app
+const app = express();
+
+
+var cors = require('cors');
+app.use(cors({
+    origin: ["http://10.0.2.2:1234", "http://127.0.0.1:8200"],
+    credentials: true,
+}));
+
+
 const bodyParser = require('body-parser');
 const config = require('config');
 const mongoose = require('mongoose');
@@ -7,8 +19,7 @@ const geo = require('./routes/geo.route'); // Imports routes for the features
 
 
 
-// initialize the express app
-const app = express();
+
 
 
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/thePage.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:geotracker/thePage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
