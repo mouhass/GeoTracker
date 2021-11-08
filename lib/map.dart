@@ -75,11 +75,24 @@ class _MapState extends State<Map> {
             child: Text('P'),
             onPressed: () async {
               print('position button pressed');
+              var myLocation = await mapController.myLocation();
               mapController.currentLocation().then( (value) async => await mapController.enableTracking());
+              await mapController.drawRoad(
+                  myLocation,
+                  myLocation,
+                  roadType: RoadType.car,
+                  intersectPoint : [myLocation],
+                  roadOption: RoadOption(
+                  roadWidth: 10,
+                  roadColor: Colors.blue,
+                  showMarkerOfPOI: false
+              ),
+              );
               print('current position');
             }
             // mapController.disabledTracking();
             //mapController.setZoom(zoomLevel: 18);
-            ));
+            )
+    );
   }
 }
