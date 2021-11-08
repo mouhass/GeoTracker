@@ -15,4 +15,21 @@ For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
-### Getting Started
+## Installation Guide
+
+### 1- Download Flutter SDK
+
+you can use this link to download : https://flutter.dev/docs/get-started/install
+
+### 2- Download and Install Android Studio
+
+you can use this link to download : https://developer.android.com/studio/install
+
+### 3- Download and Install Android Studio
+
+you can use this link to download : https://code.visualstudio.com/download
+
+### 4-Configure Android Studio
+
+
+
