@@ -79,14 +79,14 @@ class _MapState extends State<Map> {
               mapController.currentLocation().then( (value) async => await mapController.enableTracking());
               await mapController.drawRoad(
                   myLocation,
-                  myLocation,
+                GeoPoint(latitude: 47.4361, longitude: 8.6156),
                   roadType: RoadType.car,
-                  intersectPoint : [myLocation],
+                  intersectPoint : [GeoPoint(latitude: 47.4371, longitude: 8.6136)],
                   roadOption: RoadOption(
-                  roadWidth: 10,
-                  roadColor: Colors.blue,
-                  showMarkerOfPOI: false
-              ),
+                    roadWidth: 10,
+                    roadColor: Colors.blue,
+                    showMarkerOfPOI: false
+                  ),
               );
               print('current position');
             }
