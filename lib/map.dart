@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'package:http/http.dart' as http;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
@@ -16,6 +16,14 @@ class _MapState extends State<Map> {
     initPosition: GeoPoint(latitude: 47.4358055, longitude: 8.4737324),
   );
 
+  var tracking_points = {};
+  var test = false;
+  Future<http.Response> send(points) {
+    print(points);
+    return http.post(Uri.parse('http://192.168.43.87:1234/geo/create'),
+        body: points);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,6 +39,11 @@ class _MapState extends State<Map> {
           ),
         ),
         body: OSMFlutter(
+          onLocationChanged: (data) {
+            this
+                .tracking_points["coordinates"]
+                .add({"latitude": data.latitude, "longitude": data.longitude});
+          },
           controller: mapController,
           trackMyPosition: true,
           initZoom: 18,
@@ -72,27 +85,34 @@ class _MapState extends State<Map> {
           )),
         ),
         floatingActionButton: FloatingActionButton(
-            child: Text('P'),
+            child: Text(this.test ? 'Stop' : "Start"),
             onPressed: () async {
-              print('position button pressed');
-              var myLocation = await mapController.myLocation();
-              mapController.currentLocation().then( (value) async => await mapController.enableTracking());
-              await mapController.drawRoad(
-                  myLocation,
-                GeoPoint(latitude: 47.4361, longitude: 8.6156),
-                  roadType: RoadType.car,
-                  intersectPoint : [GeoPoint(latitude: 47.4371, longitude: 8.6136)],
-                  roadOption: RoadOption(
-                    roadWidth: 10,
-                    roadColor: Colors.blue,
-                    showMarkerOfPOI: false
-                  ),
-              );
-              print('current position');
+              if (!this.test) {
+                this.test = true;
+                this.tracking_points["date"] = DateTime.now().toString();
+                this.tracking_points["coordinates"] = [];
+                mapController.currentLocation().then(
+                    (value) async => await mapController.enableTracking());
+                var waysPoint = [
+                  GeoPoint(latitude: 36.8135391, longitude: 10.0637389),
+                  GeoPoint(latitude: 36.80503, longitude: 10.18102)
+                ];
+                await mapController.drawRoadManually(
+                  waysPoint,
+                  Colors.purpleAccent,
+                  6.0,
+                );
+              } else {
+                this.test = false;
+                await mapController.disabledTracking();
+                this.tracking_points["coordinates"] =
+                    this.tracking_points["coordinates"].toString();
+                print(this.tracking_points);
+                var x = await this.send(this.tracking_points);
+                print(this.tracking_points);
+              }
             }
-            // mapController.disabledTracking();
-            //mapController.setZoom(zoomLevel: 18);
-            )
-    );
+
+            ));
   }
 }

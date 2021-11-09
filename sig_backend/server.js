@@ -16,15 +16,7 @@ const bodyParser = require('body-parser');
 const config = require('config');
 const mongoose = require('mongoose');
 const geo = require('./routes/geo.route'); // Imports routes for the features
-
-
-
-
-
-
-
 // Set up mongoose connection
-
 //importing the database
 const db = config.get('mongoURI');
 

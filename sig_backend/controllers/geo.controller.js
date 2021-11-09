@@ -1,88 +1,35 @@
 const Geo = require('../models/geo.model');
 
-//Simple version, without validation or sanitation
-exports.test = function (req, res) {
-    console.log("tesing");
-    res.send('hello test controller!');
-};
-
 
 // controllers/geo.controller.js
 
-/* CREATE */
-exports.geo_create = function (req, res, next) {
+/* ADD */
+exports.add = function (req, res, next) {
     var geo = new Geo(
         req.body
     );
-
+        console.log(req.body);
     geo.save(function (err) {
         if (err) {
             return next(err);
         }
+
         res.send('Feature created successfully')
     })
 };
 
-
-/* READ */
-//return list of all geometry
-exports.geo_list = function (req, res) {
-    Geo.find({},{'geometry': 1}, function (err, geo) {
-        if (err) return next(err);
-        res.send(geo);
-    })
-};
-
-//return item that matches name
-exports.geo_name = function (req, res) {
-    Geo.findOne({ name: req.params.name },{}, function (err, geo) {
-        if (err) return next(err);
-        res.send(geo);
-    })
-};
-
-//return item that matches id
-exports.geo_id = function (req, res) {
-    Geo.findById(req.params.id, function (err, geo) {
-        if (err) return next(err);
-        res.send(geo);
-    })
-};
-
-//return all names only
-exports.geo_allnames = function (req, res) {
-    Geo.find({},{'name': 1}, function (err, geo) {
-        if (err) return next(err);
-        res.json(geo);
-    });
-};
-
 //return geometry only
-exports.geo_all = function(req,res) {
+exports.export_data = function(req,res) {
     Geo.find({},{}, function(err, geo){
         if (err) return next(err);
         res.send(geo)
     });
 };
 
-
-
-
-/* UPDATE */
-exports.feature_update = function (req, res, next) {
-    Geo.findByIdAndUpdate(req.params.id, {$set: req.body}, function (err, geo) {
+exports.export_latest = function(req,res) {
+    Geo.findOne({},{}, function(err, geo){
         if (err) return next(err);
-        res.send('Geometry updated.');
+        res.send(geo.coordinates[0]);
     });
-};
-
-
-
-/* DELETE */
-exports.geo_delete = function (req, res) {
-    Geo.findByIdAndRemove(req.params.id, function (err) {
-        if (err) return next(err);
-        res.send('Deleted successfully!');
-    })
 };
 
