@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/seConnecter/seConnecter.dart';
 
 import 'onboarding_page.dart';
 
@@ -9,9 +10,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: title,
-        theme: ThemeData(primarySwatch: Colors.blue),
-        home: OnBoardingPage(),
-      );
+      debugShowCheckedModeBanner: false,
+      title: title,
+      theme: ThemeData(primarySwatch: Colors.blue),
+      // home: OnBoardingPage(),
+      home: SeConnecter());
 }

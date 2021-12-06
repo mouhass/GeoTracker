@@ -1,5 +1,5 @@
 // server.js
-const express = require('express');
+const express = require('express')
 
 // initialize the express app
 const app = express();
@@ -10,12 +10,11 @@ app.use(cors({
     origin: ["http://10.0.2.2:1234", "http://127.0.0.1:8200"],
     credentials: true,
 }));
-
-
 const bodyParser = require('body-parser');
 const config = require('config');
 const mongoose = require('mongoose');
 const geo = require('./routes/geo.route'); // Imports routes for the features
+const user = require('./routes/users.route');
 // Set up mongoose connection
 //importing the database
 const db = config.get('mongoURI');
@@ -29,6 +28,7 @@ mongoose
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use('/geo', geo);
+app.use('/user',user);
 
 
 

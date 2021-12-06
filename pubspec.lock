@@ -156,13 +156,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  geocoder:
+  get:
     dependency: "direct main"
     description:
-      name: geocoder
+      name: get
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.1"
+    version: "4.5.1"
   google_fonts:
     dependency: "direct main"
     description:
