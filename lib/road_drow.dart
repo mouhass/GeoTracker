@@ -47,6 +47,7 @@ class _RoadDrowState extends State<RoadDrow> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          // automaticallyImplyLeading: false,
           title: Text("Find your previous paths"),
         ),
         body: OSMFlutter(

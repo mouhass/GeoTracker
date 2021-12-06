@@ -9,17 +9,16 @@ import 'button_widget.dart';
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
-          title: Text(MyApp.title),
+          automaticallyImplyLeading: false,
+          title: Center(child: Text("GeoTracker")),
         ),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                'GeoLocator',
-                style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
-              ),
+              Image.asset('assets/geotracker.png'),
               const SizedBox(height: 24),
               ButtonWidget(
                 text: 'Start Tracking',
@@ -42,8 +41,8 @@ class HomePage extends StatelessWidget {
 
   void goToMap(context) =>
       Navigator.push(context, MaterialPageRoute(builder: (context) => Map()));
-  void goToDataExport(context) =>
-      Navigator.push(context, MaterialPageRoute(builder: (context) => ExportData()));
-  void goToRoadDrow(context) =>
-      Navigator.push(context, MaterialPageRoute(builder: (context) => RoadDrow()));
+  void goToDataExport(context) => Navigator.push(
+      context, MaterialPageRoute(builder: (context) => ExportData()));
+  void goToRoadDrow(context) => Navigator.push(
+      context, MaterialPageRoute(builder: (context) => RoadDrow()));
 }
